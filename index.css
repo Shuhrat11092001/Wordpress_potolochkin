@@ -79,7 +79,7 @@ header {
   background: transparent;
 }
 .calc_head_input input {
-  width: 35%;
+  width: 80px;
   outline: none;
   border: none;
   padding: 0 0 0 10px;
@@ -139,8 +139,11 @@ label {
   color: black;
   text-shadow: 0px 2px 5px gray;
 }
-.banner_title span {
+.banner_title span:nth-child(1) {
   color: #007ac3;
+}
+.header_banner {
+  justify-content: space-around;
 }
 .banner_info {
   color: white;
@@ -172,9 +175,10 @@ label {
   justify-content: space-between;
 }
 .builder {
-  bottom: 0;
-  transform: translateY(40px);
-  /* transform: translateX(-10px); */
+  bottom: -50px;
+  left: -290px;
+  /* transform: translateY(60px);
+  transform: translateX(-434px); */
 }
 .main {
   background: #fffdf3;
@@ -555,6 +559,10 @@ label {
 }
 .map{
   margin-top: 8rem;
+}
+#map {
+  height: 600px;
+  width: 100%;
 }
 .map-title h1{
   font-weight: bold;
@@ -1179,7 +1187,7 @@ label {
   font-size: 60px;
   font-weight: bold;
 }
-.main h1 span{
+.main h1 span:nth-child(1){
   color:#3093CC;
 }
 .nav div{
@@ -1694,7 +1702,11 @@ label {
       transform: translate(600px,90px);
   }
   .builder{
-    transform: translateX(-11rem);
+    /* transform: translateX(-11rem); */
+    /* left: -194px; */
+  }
+  .banner_info {
+    margin-left: auto!important;
   }
   .car-builder{
     width: 350px;
@@ -1713,11 +1725,14 @@ label {
   .main_builder{
       transform: translate(400px,90px);
   }
+  .builder {
+    left: -164px;
+    bottom: 0;
+  }
   .builder img  {
     width: 200px;
     height: auto;
-    transform: translateX(30px);
-    
+    /* transform: translateX(30px); */
   }
   .banner_title{
     font-size: 40px;
@@ -1789,7 +1804,7 @@ label {
 }
 .builder img {
     width: 184px;
-    transform: translateX(15px);
+    /* transform: translateX(15px); */
 }
 .itemcard{
     text-align: start;
@@ -2072,7 +2087,8 @@ display: none;
     padding: 0 5px;
 }
 .builder{
-    transform: translateX(-86px);
+    /* transform: translateX(-86px); */
+    /* left: -14px; */
 }
 .calculator{
     width: 100%;
@@ -2321,6 +2337,9 @@ display: none;
   .logo{
       width: 200px;
   }
+  .builder {
+    /* left: 0px; */
+  }
   .about {
       margin-bottom: 16rem!important;
   }
@@ -2395,7 +2414,10 @@ display: none;
 }
 
 @media (max-width: 520px) {
-  .mt-2 {
+  .banner_title {
+    font-size: 32px;
+  }
+  .header_number {
     bottom: 15px;
     position: relative;
   }
@@ -2417,6 +2439,7 @@ display: none;
       width: 200px;
       transform: translate(150px, 40px);
   }
+
 }
 
 
@@ -2425,6 +2448,7 @@ display: none;
     top: 198px;
   }
   .builder{
-    transform: translateX(-96px);
+    /* transform: translateX(-96px); */
+    /* left: -90px; */
   }
 }
