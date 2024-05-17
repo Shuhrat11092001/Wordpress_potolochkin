@@ -998,53 +998,56 @@ wp_reset_postdata(); // Сбрасываем данные о посте
 <script>
 
 let jsonData = <?php echo $json_data; ?>;
-let userCity = "Ташкент";
+
+console.log(jsonData);
+
+let userCity = "Ташкент"; 
 
 function changeCity(id) {
-    let city = jsonData.find(city => city.id === id);
-    if (city) {
-        document.querySelector('.header_info p').innerText = city.phone_number;
-        document.querySelector('.map_footer-title h1').innerHTML = 'г. ' + city.city_name + ', ' + city.address +
-            '<div class="d-flex align-items-center">' +
-            city.phone_number +
-            '<div class=" mx-4">' +
-            '<img class="map-icons" loading="lazy" src="./assets/Group 1520 (1).png" alt="">' +
-            '<img class="map-icons" loading="lazy" src="./assets/Group 1521 (1).png" alt="">' +
-            '</div></div>';
-        document.querySelector('.banner_title span:last-child').innerText = city.city_name;
-        document.querySelector('.logo_text').innerText = city.city_name;
-        document.querySelector('.selected-city').innerText = city.city_name;
-        sqMeterPrice = city.sq_meter_price;
-        lightPointPrice = city.light_point_price;
-    } else {
-        console.log("Выбран другой город.");
-    }
+  let city = jsonData.find(city => city.id === id);
+  if (city) {
+    document.querySelector('.header_info p').innerText = city.phone_number;
+    document.querySelector('.map_footer-title h1').innerHTML = 'г. ' + city.city_name + ', ' + city.address +
+      '<div class="d-flex align-items-center">' +
+      city.phone_number +
+      '<div class=" mx-4">' +
+      '<img class="map-icons" loading="lazy" src="./assets/Group 1520 (1).png" alt="">' +
+      '<img class="map-icons" loading="lazy" src="./assets/Group 1521 (1).png" alt="">' +
+      '</div></div>';
+    document.querySelector('.banner_title span:last-child').innerText = city.city_name;
+    document.querySelector('.logo_text').innerText = city.city_name;
+    document.querySelector('.selected-city').innerText = city.city_name;
+  } else {
+    console.log("Выбран другой город.");
+  }
 }
 
 function fillSelect() {
-    let cities = jsonData;
-    let select = document.querySelector('.logo_text');
-    for (let i = 0; i < cities.length; i++) {
-        let option = document.createElement('option');
-        option.value = cities[i].id;
-        option.text = cities[i].city_name;
-        select.appendChild(option);
-    }
+  let cities = jsonData;
+  let select = document.querySelector('.logo_text');
+  for(let i = 0; i < cities.length; i++) {
+    let option = document.createElement('option');
+    option.value = cities[i].id;
+    option.text = cities[i].city_name;
+    select.appendChild(option);
+  }
 }
 
+
 function changeCityByName(userCity) {
-    let city = jsonData.find(city => city.city_name === userCity);
-    if (city) {
-        changeCity(city.id);
-    } else {
-        console.log("Выбран другой город.");
-    }
+  let city = jsonData.find(city => city.city_name === userCity);
+  if (city) {
+    changeCity(city.id);
+  } else {
+    console.log("Выбран другой город.");
+  }
 }
 
 let select = document.querySelector('.logo_text');
-select.addEventListener('change', function () {
-    changeCity(this.value);
+select.addEventListener('change', function() {
+  changeCity(this.value);
 });
+
 
 let dropdown = document.querySelector('.dropdown-content');
 let changeBtn = document.querySelector('.change-btn');
@@ -1052,55 +1055,54 @@ let cityList = document.querySelector('.city-list');
 let dropbtn = document.querySelector('.dropbtn');
 let confirmBtn = document.querySelector('.confirm-btn');
 
-for (let i = 0; i < jsonData.length; i++) {
-    let city = document.createElement('a');
-    city.href = "#";
-    city.innerText = jsonData[i].city_name;
-    city.onclick = function () {
-        changeCity(jsonData[i].id); // Исправлено здесь
-        dropbtn.innerText = jsonData[i].city_name;
-        document.querySelector('.selected-city').innerText = jsonData[i].city_name;
-        cityList.style.display = 'none';
-        dropdown.style.display = 'none';
-    };
-    cityList.appendChild(city);
+for(let i = 0; i < jsonData.length; i++) {
+  let city = document.createElement('a');
+  city.href = "#";
+  city.innerText = jsonData[i].city_name;
+  city.onclick = function() {
+    changeCity(jsonData[i].id); // Исправлено здесь
+    dropbtn.innerText = jsonData[i].city_name;
+    document.querySelector('.selected-city').innerText = jsonData[i].city_name;
+    cityList.style.display = 'none'; 
+    dropdown.style.display = 'none';
+  };
+  cityList.appendChild(city);
 }
 
-changeBtn.onclick = function () {
-    if (cityList.style.display === 'none') {
-        cityList.style.display = 'block';
-    } else {
-        cityList.style.display = 'none';
-    }
+changeBtn.onclick = function() {
+  if (cityList.style.display === 'none') {
+    cityList.style.display = 'block';
+  } else {
+    cityList.style.display = 'none';
+  }
 };
 
-dropbtn.onclick = function () {
-    if (dropdown.style.display === 'none') {
-        dropdown.style.display = 'block';
-    } else {
-        dropdown.style.display = 'none';
-    }
-};
-
-confirmBtn.onclick = function () {
+dropbtn.onclick = function() {
+  if (dropdown.style.display === 'none') {
+    dropdown.style.display = 'block';
+  } else {
     dropdown.style.display = 'none';
+  }
 };
 
-
+confirmBtn.onclick = function() {
+  dropdown.style.display = 'none';
+};
 
 changeCity(jsonData[0].id);
 changeCityByName(userCity);
 
 
-ы
+
+
+
 
 
 // Получаем ссылки на элементы DOM
 var firstNumberInput = document.getElementById('first_number'); // количество кв. м.
 var secondNumberInput = document.getElementById('second_number'); // количество точек освещения
 var resultElement = document.getElementById('price_text');
-
-// Получаем ссылки на элементы DOM для второй версии калькулятора
+var citySelect = document.querySelector('.logo_text'); // выбор города
 var secondFirstNumberInput = document.getElementById('second_first_number'); // количество кв. м.
 var secondSecondNumberInput = document.getElementById('second_second_number'); // количество точек освещения
 var secondResultElement = document.getElementById('second_price_text');
@@ -1115,43 +1117,69 @@ secondNumberInput.addEventListener('input', function () {
     updateResult();
 });
 
-
 // Обработчик события для поля ввода первого числа для второго калькулятора
 secondFirstNumberInput.addEventListener('input', function () {
-    updateSecondResult();
+  updateSecondResult();
 });
 
 // Обработчик события для поля ввода второго числа для второго калькулятора
 secondSecondNumberInput.addEventListener('input', function () {
-    updateSecondResult();
+  updateSecondResult();
 });
 
-// Функция для обновления результата калькуляции для первого калькулятора
+// Обработчик события для выбора города
+citySelect.addEventListener('change', function () {
+    updateResult();
+    updateSecondResult()
+});
+
+// Функция для обновления результата калькуляции
 function updateResult() {
-  // Получаем значения из полей ввода для первого калькулятора
-  var sqMeters = parseFloat(firstNumberInput.value)  0;
-  var lightPoints = parseFloat(secondNumberInput.value)  0;
+    // Получаем значения из полей ввода
+    var sqMeters = parseFloat(firstNumberInput.value) || 0;
+    var lightPoints = parseFloat(secondNumberInput.value) || 0;
 
-  // Выполняем калькуляцию для первого калькулятора
-  var result = (sqMeters * sqMeterPrice) + (lightPoints * lightPointPrice);
+    // Получаем данные для выбранного города
+    var selectedCityId = citySelect.value;
+    var cityData = jsonData.find(city => city.id === selectedCityId);
+    // Получаем цены из данных города
+    var sqMeterPrice = parseFloat(cityData.sq_meter_price);
+    var lightPointPrice = parseFloat(cityData.light_point_price);
 
-  // Обновляем результат калькуляции для первого калькулятора
-  resultElement.textContent = result;
+    // Выполняем калькуляцию
+    var result = (sqMeters * sqMeterPrice) + (lightPoints * lightPointPrice);
+
+    // Обновляем результат калькуляции
+    resultElement.textContent = result;
 }
 
 // Функция для обновления результата калькуляции для второго калькулятора
 function updateSecondResult() {
   // Получаем значения из полей ввода для второго калькулятора
-  var sqMeters = parseFloat(secondFirstNumberInput.value)  0;
-  var lightPoints = parseFloat(secondSecondNumberInput.value)  0;
+  var sqMeters = parseFloat(secondFirstNumberInput.value) || 0;
+  var lightPoints = parseFloat(secondSecondNumberInput.value) || 0;
 
-  // Выполняем калькуляцию для второго калькулятора
+  // Получаем данные для выбранного города
+  var selectedCityId = citySelect.value;
+  var cityData = jsonData.find(city => city.id === selectedCityId);
+  // Получаем цены из данных города
+  var sqMeterPrice = parseFloat(cityData.sq_meter_price);
+  var lightPointPrice = parseFloat(cityData.light_point_price);
+
+  // Выполняем калькуляцию
   var result = (sqMeters * sqMeterPrice) + (lightPoints * lightPointPrice);
 
-  // Обновляем результат калькуляции для второго калькулятора
+  // Обновляем результат калькуляции
   secondResultElement.textContent = result;
 }
-    
+
+// Используем переменную userCity для выбора города при загрузке страницы
+var cityData = jsonData.find(city => city.city_name === userCity);
+if (cityData) {
+    citySelect.value = cityData.id;
+    updateResult();
+    updateSecondResult();
+}
 
 
 
