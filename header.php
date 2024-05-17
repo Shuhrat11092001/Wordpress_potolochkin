@@ -36,11 +36,11 @@
         <div>
             <button class="header_btn border-0">Мы перезвоним</button>
     </div>
-    <div class="mt-2">
+    <div class="mt-2 header_number">
         <div class="header_info">
                 <p class="">8 888 888 88 88</p>
-                    <a  class="icons" href="./blog.html"><img loading='lazy'  src="<?php echo get_stylesheet_directory_uri();?>/Webp/Group 1520.webp" alt=""></a>
-                    <a class="icons" href=""><img loading='lazy'  src="<?php echo get_stylesheet_directory_uri();?>/Webp/Group 1521.webp" alt=""></a>
+                <a  class="icons" href="./blog.html"><img loading='lazy'  src="<?php echo get_stylesheet_directory_uri();?>/Webp/Group 1520.webp" alt=""></a>
+                <a class="icons" href=""><img loading='lazy'  src="<?php echo get_stylesheet_directory_uri();?>/Webp/Group 1521.webp" alt=""></a>
         </div>
         <div class="day-off text-end">
             <p  class="">9:00 - 21:00 без выходных</p>
