@@ -2454,8 +2454,8 @@ display: none;
 }
 
 .leaflet-container {
-  background: #f3f4f6; /* светло-серый фон */
+  background: #f3f4f6!important; 
 }
 .leaflet-tile {
-  filter: brightness(1.2) contrast(0.85) saturate(0.6); /* светлый стиль */
+  filter: brightness(1.2) contrast(0.85) saturate(0.6)!important;
 }
