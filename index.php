@@ -290,7 +290,7 @@
                     <div class="hero_tab_title">
                         <h1><?php the_title();  ?></h1>
                         <p class="mt-2"><?php the_content(); ?></p>
-                    </div>
+                    </div>w
 
                         <?php
                         }
@@ -1235,6 +1235,9 @@ citySelect.addEventListener('change', function () {
     updateResult();
     updateSecondResult()
 });
+
+
+
 
 // Функция для обновления результата калькуляции
 function updateResult() {

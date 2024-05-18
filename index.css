@@ -2345,6 +2345,7 @@ display: none;
   }
   .builder {
     /* left: 0px; */
+     left: -150px;
   }
   .about {
       margin-bottom: 16rem!important;
