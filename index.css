@@ -565,10 +565,10 @@ label {
   width: 100%;
 }
 .leaflet-container {
-  background: #f3f4f6!important; /* светло-серый фон */
+  background: #f3f4f6!important; 
 }
 .leaflet-tile {
-  filter: brightness(1.2) contrast(0.85) saturate(0.6)!important; /* светлый стиль */
+  filter: brightness(1.2) contrast(0.85) saturate(0.6)!important;
 }
 .map-title h1{
   font-weight: bold;
@@ -1535,6 +1535,10 @@ label {
   margin-right: 10px; 
 }
 
+.article_content ul li a{
+  text-decoration: none!important;
+}
+
 .article-container ul li {
   list-style-type: none;
   margin-bottom: 5px;
@@ -2455,6 +2459,6 @@ display: none;
   }
   .builder{
     /* transform: translateX(-96px); */
-    /* left: -90px; */
+    left: -150px;
   }
 }
