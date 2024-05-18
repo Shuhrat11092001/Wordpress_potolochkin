@@ -14,11 +14,9 @@ function enqueue_custom_styles() {
         );
         wp_enqueue_style( 'index-style', get_template_directory_uri() . '/index.css', array(), '1.0' );
         
-       
-       
+
         wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), null, true );
 
-        
 }
 
 

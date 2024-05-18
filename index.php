@@ -1,10 +1,8 @@
 
-    <?php get_header(); ?>
+<?php get_header(); ?> 
 
 
-    
     <!-- main section start -->
-
     <section class="main position-relative mt-5 pb-5">
     <div class="container banner_inner   ">
     <div class="banner position-relative">
@@ -1002,7 +1000,9 @@ wp_reset_postdata(); // Сбрасываем данные о посте
 
 
 // Инициализация карты с начальным видом на Москву
-var map = L.map('map').setView([55.751244, 37.618423], 13);
+var map = L.map('map', {
+    scrollWheelZoom: false // Отключение изменения масштаба при прокрутке колеса мыши
+}).setView([55.751244, 37.618423], 13);
 
 // Добавление слоя карты от OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1010,8 +1010,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Определение изображений и их границ
-var imageUrl1 = './assets/icons/truck.png'; // Укажите путь к вашему первому изображению
-var imageUrl2 = './assets/icons/noun-hard-hat-32851 3.png'; // Укажите путь к вашему второму изображению
+var imageUrl1 = '<?php echo get_stylesheet_directory_uri();?>/assets/icons/truck.png'; // Укажите путь к вашему первому изображению
+var imageUrl2 = '<?php echo get_stylesheet_directory_uri();?>/assets/icons/noun-hard-hat-32851 3.png'; // Укажите путь к вашему второму изображению
+
 
 // Массив координат и границ для 5 мест первой картинки с увеличенными размерами
 var locations1 = [
