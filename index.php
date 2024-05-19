@@ -1,7 +1,6 @@
 
 <?php get_header(); ?> 
 
-
     <!-- main section start -->
     <section class="main position-relative mt-5 pb-5">
     <div class="container banner_inner   ">
@@ -48,7 +47,7 @@
                         <h3>Рассчитайте Стоимость</h3>
                         <div class="d-flex justify-content-between">
                         <div class="calc_head_input text-nowrap">
-                                <label>Площадь <br> пPотолка  (м2)</label>
+                                <label>Площадь <br> потолка  (м2)</label>
                                 <br>
                                 <input class="rounded-3 mt-2 " id="first_number" type="number"  >
                             </div>
@@ -1001,7 +1000,8 @@ wp_reset_postdata(); // Сбрасываем данные о посте
 
 // Инициализация карты с начальным видом на Москву
 var map = L.map('map', {
-    scrollWheelZoom: false // Отключение изменения масштаба при прокрутке колеса мыши
+    scrollWheelZoom: false, // Отключение изменения масштаба при прокрутке колеса мыши
+    dragging: false // Отключение перетаскивания карты
 }).setView([55.751244, 37.618423], 13);
 
 // Добавление слоя карты от OpenStreetMap
@@ -1012,7 +1012,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Определение изображений и их границ
 var imageUrl1 = '<?php echo get_stylesheet_directory_uri();?>/assets/icons/truck.png'; // Укажите путь к вашему первому изображению
 var imageUrl2 = '<?php echo get_stylesheet_directory_uri();?>/assets/icons/noun-hard-hat-32851 3.png'; // Укажите путь к вашему второму изображению
-
 
 // Массив координат и границ для 5 мест первой картинки с увеличенными размерами
 var locations1 = [
@@ -1095,7 +1094,9 @@ function updateMap(city) {
         });
 }
 
-addImageOverlays()
+addImageOverlays();
+
+
 
 
 // selector
@@ -1194,9 +1195,6 @@ confirmBtn.onclick = function() {
 
 changeCity(jsonData[0].id);
 changeCityByName(userCity);
-
-
-
 
 
 
@@ -1408,12 +1406,6 @@ if (cityData) {
     }
     
     
-    
-    
-        
-
-
-
 
     
     // modal window

@@ -761,7 +761,7 @@ label {
 }
 .widgets {
   display: none;
-  z-index: 11;
+  z-index: 111;
 }
 
 .widget {
