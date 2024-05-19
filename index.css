@@ -1701,12 +1701,6 @@ label {
 }
 
 
-
-
-
-
-
-
 @media (max-width:1400px){
   .main_builder{
       transform: translate(600px,90px);
@@ -1725,7 +1719,7 @@ label {
     width: 1100px;
   }
   .form-builder{
-    transform: translate(0px, -230px);
+    transform: translate(0px, -205px);
   }
   .form-text{
     transform: translate(120px, -200px);
