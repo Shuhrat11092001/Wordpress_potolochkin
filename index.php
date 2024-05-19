@@ -1106,50 +1106,79 @@ console.log(jsonData);
 let userCity = "Ташкент"; 
 
 function changeCity(id) {
-  let city = jsonData.find(city => city.id === id);
-  if (city) {
-    document.querySelector('.header_info p').innerText = city.phone_number;
-    document.querySelector('.map_footer-title h1').innerHTML = 'г. ' + city.city_name + ', ' + city.address +
-      '<div class="d-flex align-items-center">' +
-      city.phone_number +
-      '<div class=" mx-4">' +
-      '<img class="map-icons" loading="lazy" src="./assets/Group 1520 (1).png" alt="">' +
-      '<img class="map-icons" loading="lazy" src="./assets/Group 1521 (1).png" alt="">' +
-      '</div></div>';
-    document.querySelector('.banner_title span:last-child').innerText = city.city_name;
-    document.querySelector('.logo_text').innerText = city.city_name;
-    document.querySelector('.selected-city').innerText = city.city_name;
-  } else {
-    console.log("Выбран другой город.");
+let city = jsonData.find(city => city.id === id);
+if (city) {
+  document.querySelector('.header_info p').innerText = city.phone_number;
+  document.querySelector('.map_footer-title h1').innerHTML = 'г. ' + city.city_name + ', ' + city.address +
+    '<div class="d-flex align-items-center">' +
+    city.phone_number +
+    '<div class=" mx-4">' +
+    '<img class="map-icons" loading="lazy" src="./assets/Group 1520 (1).png" alt="">' +
+    '<img class="map-icons" loading="lazy" src="./assets/Group 1521 (1).png" alt="">' +
+    '</div></div>';
+  
+  let bannerTitleSpan = document.querySelector('.banner_title span:last-child');
+  let cityName = city.city_name;
+  if (cityName.endsWith('а')) {
+    cityName = cityName.slice(0, -1) + 'е';
+  } else if (!cityName.endsWith('е')) {
+    cityName += 'е';
   }
+  bannerTitleSpan.innerText = cityName;
+
+  let logoText = document.querySelector('.logo_text');
+  logoText.innerText = city.city_name;
+  if (!logoText.innerText.endsWith('а')) {
+    logoText.innerText += 'а';
+  }
+  let selectedCity = document.querySelector('.selected-city');
+  selectedCity.innerText = city.city_name;
+  if (!selectedCity.innerText.endsWith('а')) {
+    selectedCity.innerText += 'а';
+  }
+
+  let mapCity = document.querySelector('.map-body h5 span');
+  if (cityName.endsWith('а')) {
+    cityName = cityName.slice(0, -1) + 'е';
+  } else if (!cityName.endsWith('е')) {
+    cityName += 'е';
+  }
+  mapCity.innerText = cityName;
+} else {
+  console.log("Выбран другой город.");
+}
 }
 
 function fillSelect() {
-  let cities = jsonData;
-  let select = document.querySelector('.logo_text');
-  for(let i = 0; i < cities.length; i++) {
-    let option = document.createElement('option');
-    option.value = cities[i].id;
-    option.text = cities[i].city_name;
-    select.appendChild(option);
-  }
+let cities = jsonData;
+let select = document.querySelector('.logo_text');
+for(let i = 0; i < cities.length; i++) {
+  let option = document.createElement('option');
+  option.value = cities[i].id;
+  option.text = cities[i].city_name;
+  select.appendChild(option);
+}
 }
 
-
 function changeCityByName(userCity) {
-  let city = jsonData.find(city => city.city_name === userCity);
-  if (city) {
-    changeCity(city.id);
-  } else {
-    console.log("Выбран другой город.");
+let city = jsonData.find(city => city.city_name === userCity);
+if (city) {
+  changeCity(city.id);
+  let logoText = document.querySelector('.logo_text');
+  let logoCityName = city.city_name;
+  if (!logoCityName.endsWith('а')) {
+    logoCityName += 'а';
   }
+  logoText.innerText = logoCityName;
+} else {
+  console.log("Выбран другой город.");
+}
 }
 
 let select = document.querySelector('.logo_text');
 select.addEventListener('change', function() {
-  changeCity(this.value);
+changeCity(this.value);
 });
-
 
 let dropdown = document.querySelector('.dropdown-content');
 let changeBtn = document.querySelector('.change-btn');
@@ -1158,42 +1187,49 @@ let dropbtn = document.querySelector('.dropbtn');
 let confirmBtn = document.querySelector('.confirm-btn');
 
 for(let i = 0; i < jsonData.length; i++) {
-  let city = document.createElement('a');
-  city.href = "#";
-  city.innerText = jsonData[i].city_name;
-  city.onclick = function() {
-    changeCity(jsonData[i].id); // Исправлено здесь
-    dropbtn.innerText = jsonData[i].city_name;
-    document.querySelector('.selected-city').innerText = jsonData[i].city_name;
-    cityList.style.display = 'none'; 
-    dropdown.style.display = 'none';
-  };
-  cityList.appendChild(city);
+let city = document.createElement('a');
+city.href = "#";
+city.innerText = jsonData[i].city_name;
+city.onclick = function() {
+  changeCity(jsonData[i].id);
+  dropbtn.innerText = jsonData[i].city_name;
+  let logoText = document.querySelector('.logo_text');
+  logoText.innerText = jsonData[i].city_name;
+  if (!logoText.innerText.endsWith('а')) {
+    logoText.innerText += 'а';
+  }
+  let selectedCity = document.querySelector('.selected-city');
+  selectedCity.innerText = jsonData[i].city_name;
+  if (!selectedCity.innerText.endsWith('а')) {
+    selectedCity.innerText += 'а';
+  }
+  dropdown.style.display = 'none';
+};
+cityList.appendChild(city);
 }
 
 changeBtn.onclick = function() {
-  if (cityList.style.display === 'none') {
-    cityList.style.display = 'block';
-  } else {
-    cityList.style.display = 'none';
-  }
+if (cityList.style.display === 'none') {
+  cityList.style.display = 'block';
+} else {
+  cityList.style.display = 'none';
+}
 };
 
 dropbtn.onclick = function() {
-  if (dropdown.style.display === 'none') {
-    dropdown.style.display = 'block';
-  } else {
-    dropdown.style.display = 'none';
-  }
+if (dropdown.style.display === 'none') {
+  dropdown.style.display = 'block';
+} else {
+  dropdown.style.display = 'none';
+}
 };
 
 confirmBtn.onclick = function() {
-  dropdown.style.display = 'none';
+dropdown.style.display = 'none';
 };
 
 changeCity(jsonData[0].id);
 changeCityByName(userCity);
-
 
 
 
