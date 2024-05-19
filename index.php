@@ -1,7 +1,8 @@
 
-<?php get_header(); ?> 
+    <?php get_header(); ?>
 
     <!-- main section start -->
+
     <section class="main position-relative mt-5 pb-5">
     <div class="container banner_inner   ">
     <div class="banner position-relative">
@@ -10,10 +11,10 @@
             Бесшовные <span>натяжные потолки</span> по отличным ценам в <span>Нижнем Новгороде</span>
         </h1>
     </div>
-    <div class="banner_info position-relative">
-        <div class="position-absolute builder">
-            <img loading='lazy' width='320' height='516'  class="" src="<?php echo get_stylesheet_directory_uri();?>/assets/telegram-cloud-photo-size-2-5309932995521662351-x 1.png" alt="">
-        </div>
+<div class="position-absolute builder">
+    <img loading='lazy' width='320' height='516'  class="" src="<?php echo get_stylesheet_directory_uri();?>/assets/telegram-cloud-photo-size-2-5309932995521662351-x 1.png" alt="">
+</div>
+    <div class="banner_info ">
         <?php
 
         $my_posts = get_posts( array(
@@ -40,14 +41,14 @@
         wp_reset_postdata(); // Сбрасываем данные о посте
 
         ?>
-    </div>
+</div>
 </div>
             <div class="calculator">
                 <div class="calc_head">
                         <h3>Рассчитайте Стоимость</h3>
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex">
                         <div class="calc_head_input text-nowrap">
-                                <label>Площадь <br> потолка  (м2)</label>
+                                <label>Площадь <br> пPотолка  (м2)</label>
                                 <br>
                                 <input class="rounded-3 mt-2 " id="first_number" type="number"  >
                             </div>
@@ -289,7 +290,7 @@
                     <div class="hero_tab_title">
                         <h1><?php the_title();  ?></h1>
                         <p class="mt-2"><?php the_content(); ?></p>
-                    </div>w
+                    </div>
 
                         <?php
                         }
@@ -809,7 +810,7 @@ wp_reset_postdata(); // Сбрасываем данные о посте
                 </div>
                 
             </div>
-            <div id="map" class="mt-5"></div>
+            <img loading='lazy' width="100%" src="<?php echo get_stylesheet_directory_uri();?>/assets/Карта.webp" alt="" class="mt-5">
 
             <div class="map_fotter mt-5 d-flex justify-content-evenly">
                 <div class="map_footer-title">
@@ -995,193 +996,54 @@ wp_reset_postdata(); // Сбрасываем данные о посте
 
 
 <script>
-// map
-
-
-// Инициализация карты с начальным видом на Москву
-var map = L.map('map', {
-    scrollWheelZoom: false, // Отключение изменения масштаба при прокрутке колеса мыши
-    dragging: false // Отключение перетаскивания карты
-}).setView([55.751244, 37.618423], 13);
-
-// Добавление слоя карты от OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Определение изображений и их границ
-var imageUrl1 = '<?php echo get_stylesheet_directory_uri();?>/assets/icons/truck.png'; // Укажите путь к вашему первому изображению
-var imageUrl2 = '<?php echo get_stylesheet_directory_uri();?>/assets/icons/noun-hard-hat-32851 3.png'; // Укажите путь к вашему второму изображению
-
-// Массив координат и границ для 5 мест первой картинки с увеличенными размерами
-var locations1 = [
-    {
-        bounds: [[55.751827, 37.543272], [55.755827, 37.551272]], // Ваганьковское кладбище
-        name: "Ваганьковское кладбище"
-    },
-    {
-        bounds: [[55.756911, 37.614242], [55.760911, 37.622242]], // Театральная
-        name: "Театральная"
-    },
-    {
-        bounds: [[55.740444, 37.602707], [55.744444, 37.610707]], // Государственный музей изобразительных искусств имени А.С. Пушкина
-        name: "Государственный музей изобразительных искусств имени А.С. Пушкина"
-    },
-    {
-        bounds: [[55.740500, 37.649056], [55.744500, 37.657056]], // Курский вокзал
-        name: "Курский вокзал"
-    },
-    {
-        bounds: [[55.755500, 37.746000], [55.759500, 37.754000]], // Шоссе Энтузиастов
-        name: "Шоссе Энтузиастов"
-    }
-];
-
-// Массив координат и границ для 5 мест второй картинки с увеличенными размерами
-var locations2 = [
-    {
-        bounds: [[55.750244, 37.581921], [55.753244, 37.587921]], // Ул. Новый Арбат
-        name: "Ул. Новый Арбат"
-    },
-    {
-        bounds: [[55.735301, 37.609126], [55.738301, 37.615126]], // Крымская набережная
-        name: "Крымская набережная"
-    },
-    {
-        bounds: [[55.745922, 37.679284], [55.748922, 37.685284]], // Площадь Ильича
-        name: "Площадь Ильича"
-    },
-    {
-        bounds: [[55.751315, 37.714034], [55.754315, 37.720034]], // Авиамоторная ул.
-        name: "Авиамоторная ул."
-    },
-    {
-        bounds: [[55.750382, 37.714644], [55.753382, 37.720644]], // МЦД рядом с Андроновка
-        name: "МЦД рядом с Андроновка"
-    }
-];
-
-// Функция для добавления изображений в заданные места
-function addImageOverlays() {
-    locations1.forEach(location => {
-        L.imageOverlay(imageUrl1, location.bounds).addTo(map);
-    });
-    locations2.forEach(location => {
-        L.imageOverlay(imageUrl2, location.bounds).addTo(map);
-    });
-}
-
-// Функция для обновления карты по городу
-function updateMap(city) {
-    fetch(`https://nominatim.openstreetmap.org/search?city=${city}&format=json&limit=1`)
-        .then(response => response.json())
-        .then(data => {
-            if (data && data.length > 0) {
-                var lat = data[0].lat;
-                var lon = data[0].lon;
-                map.setView([lat, lon], 13);
-                L.marker([lat, lon]).addTo(map)
-                    .bindPopup(`${city}`)
-                    .openPopup();
-                // Добавление изображений после обновления карты
-                addImageOverlays();
-            } else {
-                alert('City not found!');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching city data:', error);
-        });
-}
-
-addImageOverlays();
-
-
-
-
-// selector
 
 let jsonData = <?php echo $json_data; ?>;
-
-console.log(jsonData);
-
-let userCity = "Ташкент"; 
+let userCity = "Ташкент";
 
 function changeCity(id) {
-let city = jsonData.find(city => city.id === id);
-if (city) {
-  document.querySelector('.header_info p').innerText = city.phone_number;
-  document.querySelector('.map_footer-title h1').innerHTML = 'г. ' + city.city_name + ', ' + city.address +
-    '<div class="d-flex align-items-center">' +
-    city.phone_number +
-    '<div class=" mx-4">' +
-    '<img class="map-icons" loading="lazy" src="./assets/Group 1520 (1).png" alt="">' +
-    '<img class="map-icons" loading="lazy" src="./assets/Group 1521 (1).png" alt="">' +
-    '</div></div>';
-  
-  let bannerTitleSpan = document.querySelector('.banner_title span:last-child');
-  let cityName = city.city_name;
-  if (cityName.endsWith('а')) {
-    cityName = cityName.slice(0, -1) + 'е';
-  } else if (!cityName.endsWith('е')) {
-    cityName += 'е';
-  }
-  bannerTitleSpan.innerText = cityName;
-
-  let logoText = document.querySelector('.logo_text');
-  logoText.innerText = city.city_name;
-  if (!logoText.innerText.endsWith('а')) {
-    logoText.innerText += 'а';
-  }
-  let selectedCity = document.querySelector('.selected-city');
-  selectedCity.innerText = city.city_name;
-  if (!selectedCity.innerText.endsWith('а')) {
-    selectedCity.innerText += 'а';
-  }
-
-  let mapCity = document.querySelector('.map-body h5 span');
-  if (cityName.endsWith('а')) {
-    cityName = cityName.slice(0, -1) + 'е';
-  } else if (!cityName.endsWith('е')) {
-    cityName += 'е';
-  }
-  mapCity.innerText = cityName;
-
-  let mapCity2 = document.querySelector('.map-title p span');
-  if (cityName.endsWith('а')) {
-    cityName = cityName.slice(0, -1) + 'е';
-  } else if (!cityName.endsWith('е')) {
-    cityName += 'е';
-  }
-  mapCity2.innerText = cityName;
-} else {
-  console.log("Выбран другой город.");
-}
+    let city = jsonData.find(city => city.id === id);
+    if (city) {
+        document.querySelector('.header_info p').innerText = city.phone_number;
+        document.querySelector('.map_footer-title h1').innerHTML = 'г. ' + city.city_name + ', ' + city.address +
+            '<div class="d-flex align-items-center">' +
+            city.phone_number +
+            '<div class=" mx-4">' +
+            '<img class="map-icons" loading="lazy" src="./assets/Group 1520 (1).png" alt="">' +
+            '<img class="map-icons" loading="lazy" src="./assets/Group 1521 (1).png" alt="">' +
+            '</div></div>';
+        document.querySelector('.banner_title span:last-child').innerText = city.city_name;
+        document.querySelector('.logo_text').innerText = city.city_name;
+        document.querySelector('.selected-city').innerText = city.city_name;
+        sqMeterPrice = city.sq_meter_price;
+        lightPointPrice = city.light_point_price;
+    } else {
+        console.log("Выбран другой город.");
+    }
 }
 
 function fillSelect() {
-let cities = jsonData;
-let select = document.querySelector('.logo_text');
-for(let i = 0; i < cities.length; i++) {
-  let option = document.createElement('option');
-  option.value = cities[i].id;
-  option.text = cities[i].city_name;
-  select.appendChild(option);
-}
+    let cities = jsonData;
+    let select = document.querySelector('.logo_text');
+    for (let i = 0; i < cities.length; i++) {
+        let option = document.createElement('option');
+        option.value = cities[i].id;
+        option.text = cities[i].city_name;
+        select.appendChild(option);
+    }
 }
 
 function changeCityByName(userCity) {
-let city = jsonData.find(city => city.city_name === userCity);
-if (city) {
-  changeCity(city.id);
-} else {
-  console.log("Выбран другой город.");
-}
+    let city = jsonData.find(city => city.city_name === userCity);
+    if (city) {
+        changeCity(city.id);
+    } else {
+        console.log("Выбран другой город.");
+    }
 }
 
 let select = document.querySelector('.logo_text');
-select.addEventListener('change', function() {
-changeCity(this.value);
+select.addEventListener('change', function () {
+    changeCity(this.value);
 });
 
 let dropdown = document.querySelector('.dropdown-content');
@@ -1190,54 +1052,44 @@ let cityList = document.querySelector('.city-list');
 let dropbtn = document.querySelector('.dropbtn');
 let confirmBtn = document.querySelector('.confirm-btn');
 
-for(let i = 0; i < jsonData.length; i++) {
-let city = document.createElement('a');
-city.href = "#";
-city.innerText = jsonData[i].city_name;
-city.onclick = function() {
-  changeCity(jsonData[i].id);
-  dropbtn.innerText = jsonData[i].city_name;
-  let logoText = document.querySelector('.logo_text');
-  logoText.innerText = jsonData[i].city_name;
-  if (!logoText.innerText.endsWith('а')) {
-    logoText.innerText += 'а';
-  }
-  let selectedCity = document.querySelector('.selected-city');
-  selectedCity.innerText = jsonData[i].city_name;
-  if (!selectedCity.innerText.endsWith('а')) {
-    selectedCity.innerText += 'а';
-  }
-  dropdown.style.display = 'none';
-};
-cityList.appendChild(city);
+for (let i = 0; i < jsonData.length; i++) {
+    let city = document.createElement('a');
+    city.href = "#";
+    city.innerText = jsonData[i].city_name;
+    city.onclick = function () {
+        changeCity(jsonData[i].id); // Исправлено здесь
+        dropbtn.innerText = jsonData[i].city_name;
+        document.querySelector('.selected-city').innerText = jsonData[i].city_name;
+        cityList.style.display = 'none';
+        dropdown.style.display = 'none';
+    };
+    cityList.appendChild(city);
 }
 
-changeBtn.onclick = function() {
-if (cityList.style.display === 'none') {
-  cityList.style.display = 'block';
-} else {
-  cityList.style.display = 'none';
-}
+changeBtn.onclick = function () {
+    if (cityList.style.display === 'none') {
+        cityList.style.display = 'block';
+    } else {
+        cityList.style.display = 'none';
+    }
 };
 
-dropbtn.onclick = function() {
-if (dropdown.style.display === 'none') {
-  dropdown.style.display = 'block';
-} else {
-  dropdown.style.display = 'none';
-}
+dropbtn.onclick = function () {
+    if (dropdown.style.display === 'none') {
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
+    }
 };
 
-confirmBtn.onclick = function() {
-dropdown.style.display = 'none';
+confirmBtn.onclick = function () {
+    dropdown.style.display = 'none';
 };
+
+
 
 changeCity(jsonData[0].id);
 changeCityByName(userCity);
-
-
-
-
 
 
 
@@ -1245,7 +1097,8 @@ changeCityByName(userCity);
 var firstNumberInput = document.getElementById('first_number'); // количество кв. м.
 var secondNumberInput = document.getElementById('second_number'); // количество точек освещения
 var resultElement = document.getElementById('price_text');
-var citySelect = document.querySelector('.logo_text'); // выбор города
+
+// Получаем ссылки на элементы DOM для второй версии калькулятора
 var secondFirstNumberInput = document.getElementById('second_first_number'); // количество кв. м.
 var secondSecondNumberInput = document.getElementById('second_second_number'); // количество точек освещения
 var secondResultElement = document.getElementById('second_price_text');
@@ -1260,72 +1113,43 @@ secondNumberInput.addEventListener('input', function () {
     updateResult();
 });
 
+
 // Обработчик события для поля ввода первого числа для второго калькулятора
 secondFirstNumberInput.addEventListener('input', function () {
-  updateSecondResult();
+    updateSecondResult();
 });
 
 // Обработчик события для поля ввода второго числа для второго калькулятора
 secondSecondNumberInput.addEventListener('input', function () {
-  updateSecondResult();
+    updateSecondResult();
 });
 
-// Обработчик события для выбора города
-citySelect.addEventListener('change', function () {
-    updateResult();
-    updateSecondResult()
-});
-
-
-
-
-// Функция для обновления результата калькуляции
+// Функция для обновления результата калькуляции для первого калькулятора
 function updateResult() {
-    // Получаем значения из полей ввода
-    var sqMeters = parseFloat(firstNumberInput.value) || 0;
-    var lightPoints = parseFloat(secondNumberInput.value) || 0;
+  // Получаем значения из полей ввода для первого калькулятора
+  var sqMeters = parseFloat(firstNumberInput.value)  0;
+  var lightPoints = parseFloat(secondNumberInput.value)  0;
 
-    // Получаем данные для выбранного города
-    var selectedCityId = citySelect.value;
-    var cityData = jsonData.find(city => city.id === selectedCityId);
-    // Получаем цены из данных города
-    var sqMeterPrice = parseFloat(cityData.sq_meter_price);
-    var lightPointPrice = parseFloat(cityData.light_point_price);
+  // Выполняем калькуляцию для первого калькулятора
+  var result = (sqMeters * sqMeterPrice) + (lightPoints * lightPointPrice);
 
-    // Выполняем калькуляцию
-    var result = (sqMeters * sqMeterPrice) + (lightPoints * lightPointPrice);
-
-    // Обновляем результат калькуляции
-    resultElement.textContent = result;
+  // Обновляем результат калькуляции для первого калькулятора
+  resultElement.textContent = result;
 }
 
 // Функция для обновления результата калькуляции для второго калькулятора
 function updateSecondResult() {
   // Получаем значения из полей ввода для второго калькулятора
-  var sqMeters = parseFloat(secondFirstNumberInput.value) || 0;
-  var lightPoints = parseFloat(secondSecondNumberInput.value) || 0;
+  var sqMeters = parseFloat(secondFirstNumberInput.value)  0;
+  var lightPoints = parseFloat(secondSecondNumberInput.value)  0;
 
-  // Получаем данные для выбранного города
-  var selectedCityId = citySelect.value;
-  var cityData = jsonData.find(city => city.id === selectedCityId);
-  // Получаем цены из данных города
-  var sqMeterPrice = parseFloat(cityData.sq_meter_price);
-  var lightPointPrice = parseFloat(cityData.light_point_price);
-
-  // Выполняем калькуляцию
+  // Выполняем калькуляцию для второго калькулятора
   var result = (sqMeters * sqMeterPrice) + (lightPoints * lightPointPrice);
 
-  // Обновляем результат калькуляции
+  // Обновляем результат калькуляции для второго калькулятора
   secondResultElement.textContent = result;
 }
-
-// Используем переменную userCity для выбора города при загрузке страницы
-var cityData = jsonData.find(city => city.city_name === userCity);
-if (cityData) {
-    citySelect.value = cityData.id;
-    updateResult();
-    updateSecondResult();
-}
+    
 
 
 
@@ -1358,13 +1182,6 @@ if (cityData) {
     });
     
     
-
-
-
-
-
-
-
 
 
 
@@ -1448,6 +1265,12 @@ if (cityData) {
     }
     
     
+    
+    
+        
+
+
+
 
     
     // modal window
