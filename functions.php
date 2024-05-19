@@ -79,10 +79,12 @@ function city_contact_info_page_content(){
             echo '<p><strong>Минимальная цена:</strong> ' . $result->min_price . '</p>';
             echo '<p><strong>Цена кв. м.:</strong> ' . $result->sq_meter_price . '</p>';
             echo '<p><strong>Цена точки освещения:</strong> ' . $result->light_point_price . '</p>';
+            echo '<p><a href="?action=delete_city&city_id=' . $result->id . '">Удалить</a></p>';
             echo '</li>';
         }
         echo '</ul>';
         echo '</div>';
+
     } else {
         echo '<p class="no-data">Нет данных.</p>';
     }
@@ -129,6 +131,25 @@ $wpdb->insert(
     }
 }
 
+
+// Обработчик удаления данных
+function delete_city_data() {
+    global $wpdb;
+
+    // Проверяем, есть ли запрос на удаление и получаем ID города для удаления
+    if (isset($_GET['action']) && $_GET['action'] === 'delete_city' && isset($_GET['city_id'])) {
+        $city_id = intval($_GET['city_id']);
+
+        // Удаляем данные из таблицы
+        $wpdb->delete($wpdb->prefix . 'cities', array('id' => $city_id), array('%d'));
+
+        // Перенаправляем пользователя обратно на страницу с контактными данными
+        wp_redirect(admin_url('admin.php?page=city_contact_info'));
+        exit;
+    }
+}
+
+add_action('admin_init', 'delete_city_data');
 
 
 
