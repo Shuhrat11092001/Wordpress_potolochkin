@@ -1205,6 +1205,7 @@ selectedCity.innerText = jsonData[i].city_name;
 if (!selectedCity.innerText.endsWith('а')) {
 selectedCity.innerText += 'а';
 }
+cityList.style.display = 'none'; 
 dropdown.style.display = 'none';
 };
 cityList.appendChild(city);
