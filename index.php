@@ -1144,6 +1144,14 @@ if (city) {
     cityName += 'е';
   }
   mapCity.innerText = cityName;
+
+  let mapCity2 = document.querySelector('.map-title p span');
+  if (cityName.endsWith('а')) {
+    cityName = cityName.slice(0, -1) + 'е';
+  } else if (!cityName.endsWith('е')) {
+    cityName += 'е';
+  }
+  mapCity2.innerText = cityName;
 } else {
   console.log("Выбран другой город.");
 }
@@ -1164,12 +1172,6 @@ function changeCityByName(userCity) {
 let city = jsonData.find(city => city.city_name === userCity);
 if (city) {
   changeCity(city.id);
-  let logoText = document.querySelector('.logo_text');
-  let logoCityName = city.city_name;
-  if (!logoCityName.endsWith('а')) {
-    logoCityName += 'а';
-  }
-  logoText.innerText = logoCityName;
 } else {
   console.log("Выбран другой город.");
 }
@@ -1230,6 +1232,7 @@ dropdown.style.display = 'none';
 
 changeCity(jsonData[0].id);
 changeCityByName(userCity);
+
 
 
 
