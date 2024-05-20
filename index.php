@@ -803,7 +803,7 @@ wp_reset_postdata(); // Сбрасываем данные о посте
                 </p>
             </div>
                 <div class="map-body mt-5">
-                    <h5>Прямо сейчас в Москве:</h5>
+                    <h5>Прямо сейчас в<span> Москве:</span></h5> 
                     <h5><img class="mx-3" loading='lazy' src="<?php echo get_stylesheet_directory_uri();?>/assets/icons/noun-hard-hat-32851 3.png" alt=""> ️100 специалистов на замере </h5>
                     <h5><img class="mx-3" loading='lazy' src="<?php echo get_stylesheet_directory_uri();?>/assets/icons/truck.png" alt=""> ️15 бригад делают потолки</h5>
                     
