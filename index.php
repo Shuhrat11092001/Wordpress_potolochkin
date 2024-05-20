@@ -50,7 +50,7 @@
                     <h3>Рассчитайте Стоимость</h3>
                     <div class="d-flex justify-content-between">
                     <div class="calc_head_input text-nowrap">
-                            <label>Площадь <br> пPотолка  (м2)</label>
+                            <label>Площадь <br> потолка  (м2)</label>
                             <br>
                             <input class="rounded-3 mt-2 " id="first_number" type="number"  >
                         </div>
@@ -803,15 +803,7 @@ wp_reset_postdata(); // Сбрасываем данные о посте
                 </p>
             </div>
                 <div class="map-body mt-5">
-<<<<<<< HEAD
-                    <h5>Прямо сейчас в<span> Москве:</span></h5> 
-=======
-
-                    <h5>Прямо сейчас в <span>Москве:</span></h5>
-
-                    <h5>Прямо сейчас в Москве:</h5>
-
->>>>>>> b401716f9d5a4bcb8cd9d983bd6adc70584cadff
+                    <h5>Прямо сейчас в <span> Москве:</span></h5> 
                     <h5><img class="mx-3" loading='lazy' src="<?php echo get_stylesheet_directory_uri();?>/assets/icons/noun-hard-hat-32851 3.png" alt=""> ️100 специалистов на замере </h5>
                     <h5><img class="mx-3" loading='lazy' src="<?php echo get_stylesheet_directory_uri();?>/assets/icons/truck.png" alt=""> ️15 бригад делают потолки</h5>
                     
@@ -1009,12 +1001,24 @@ wp_reset_postdata(); // Сбрасываем данные о посте
 // map
 
 
+// Переменная для хранения названия города
+var city = 'Москва';
+
 // Инициализация карты с начальным видом на Москву
-var map = L.map('map').setView([55.751244, 37.618423], 13);
+var map = L.map('map', {
+    center: [55.751244, 37.618423],
+    zoom: 13,
+    zoomControl: false,           // Отключить элементы управления масштабированием
+    scrollWheelZoom: false,       // Отключить увеличение с помощью колесика мыши
+    doubleClickZoom: false,       // Отключить увеличение по двойному щелчку
+    dragging: false,              // Отключить перетаскивание карты
+    touchZoom: false,             // Отключить увеличение касанием
+    boxZoom: false                // Отключить увеличение рамкой
+});
 
 // Добавление слоя карты от OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 // Определение изображений и их границ
@@ -1023,86 +1027,90 @@ var imageUrl2 = './assets/icons/noun-hard-hat-32851 3.png'; // Укажите п
 
 // Массив координат и границ для 5 мест первой картинки с увеличенными размерами
 var locations1 = [
-{
-    bounds: [[55.751827, 37.543272], [55.755827, 37.551272]], // Ваганьковское кладбище
-    name: "Ваганьковское кладбище"
-},
-{
-    bounds: [[55.756911, 37.614242], [55.760911, 37.622242]], // Театральная
-    name: "Театральная"
-},
-{
-    bounds: [[55.740444, 37.602707], [55.744444, 37.610707]], // Государственный музей изобразительных искусств имени А.С. Пушкина
-    name: "Государственный музей изобразительных искусств имени А.С. Пушкина"
-},
-{
-    bounds: [[55.740500, 37.649056], [55.744500, 37.657056]], // Курский вокзал
-    name: "Курский вокзал"
-},
-{
-    bounds: [[55.755500, 37.746000], [55.759500, 37.754000]], // Шоссе Энтузиастов
-    name: "Шоссе Энтузиастов"
-}
+    {
+        bounds: [[55.751827, 37.543272], [55.755827, 37.551272]], // Ваганьковское кладбище
+        name: "Ваганьковское кладбище"
+    },
+    {
+        bounds: [[55.756911, 37.614242], [55.760911, 37.622242]], // Театральная
+        name: "Театральная"
+    },
+    {
+        bounds: [[55.740444, 37.602707], [55.744444, 37.610707]], // Государственный музей изобразительных искусств имени А.С. Пушкина
+        name: "Государственный музей изобразительных искусств имени А.С. Пушкина"
+    },
+    {
+        bounds: [[55.740500, 37.649056], [55.744500, 37.657056]], // Курский вокзал
+        name: "Курский вокзал"
+    },
+    {
+        bounds: [[55.755500, 37.746000], [55.759500, 37.754000]], // Шоссе Энтузиастов
+        name: "Шоссе Энтузиастов"
+    }
 ];
 
 // Массив координат и границ для 5 мест второй картинки с увеличенными размерами
 var locations2 = [
-{
-    bounds: [[55.750244, 37.581921], [55.753244, 37.587921]], // Ул. Новый Арбат
-    name: "Ул. Новый Арбат"
-},
-{
-    bounds: [[55.735301, 37.609126], [55.738301, 37.615126]], // Крымская набережная
-    name: "Крымская набережная"
-},
-{
-    bounds: [[55.745922, 37.679284], [55.748922, 37.685284]], // Площадь Ильича
-    name: "Площадь Ильича"
-},
-{
-    bounds: [[55.751315, 37.714034], [55.754315, 37.720034]], // Авиамоторная ул.
-    name: "Авиамоторная ул."
-},
-{
-    bounds: [[55.750382, 37.714644], [55.753382, 37.720644]], // МЦД рядом с Андроновка
-    name: "МЦД рядом с Андроновка"
-}
+    {
+        bounds: [[55.750244, 37.581921], [55.753244, 37.587921]], // Ул. Новый Арбат
+        name: "Ул. Новый Арбат"
+    },
+    {
+        bounds: [[55.735301, 37.609126], [55.738301, 37.615126]], // Крымская набережная
+        name: "Крымская набережная"
+    },
+    {
+        bounds: [[55.745922, 37.679284], [55.748922, 37.685284]], // Площадь Ильича
+        name: "Площадь Ильича"
+    },
+    {
+        bounds: [[55.751315, 37.714034], [55.754315, 37.720034]], // Авиамоторная ул.
+        name: "Авиамоторная ул."
+    },
+    {
+        bounds: [[55.750382, 37.714644], [55.753382, 37.720644]], // МЦД рядом с Андроновка
+        name: "МЦД рядом с Андроновка"
+    }
 ];
 
 // Функция для добавления изображений в заданные места
 function addImageOverlays() {
-locations1.forEach(location => {
-    L.imageOverlay(imageUrl1, location.bounds).addTo(map);
-});
-locations2.forEach(location => {
-    L.imageOverlay(imageUrl2, location.bounds).addTo(map);
-});
+    locations1.forEach(location => {
+        L.imageOverlay(imageUrl1, location.bounds).addTo(map);
+    });
+    locations2.forEach(location => {
+        L.imageOverlay(imageUrl2, location.bounds).addTo(map);
+    });
 }
 
 // Функция для обновления карты по городу
 function updateMap(city) {
-fetch(`https://nominatim.openstreetmap.org/search?city=${city}&format=json&limit=1`)
-    .then(response => response.json())
-    .then(data => {
-        if (data && data.length > 0) {
-            var lat = data[0].lat;
-            var lon = data[0].lon;
-            map.setView([lat, lon], 13);
-            L.marker([lat, lon]).addTo(map)
-                .bindPopup(`${city}`)
-                .openPopup();
-            // Добавление изображений после обновления карты
-            addImageOverlays();
-        } else {
-            alert('City not found!');
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching city data:', error);
-    });
+    fetch(`https://nominatim.openstreetmap.org/search?city=${city}&format=json&limit=1`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                var lat = data[0].lat;
+                var lon = data[0].lon;
+                map.setView([lat, lon], 13);
+                L.marker([lat, lon]).addTo(map)
+                    .bindPopup(`${city}`)
+                    .openPopup();
+                // Добавление изображений после обновления карты
+                addImageOverlays();
+            } else {
+                alert('City not found!');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching city data:', error);
+        });
 }
 
-addImageOverlays()
+// Первоначальное добавление изображений
+addImageOverlays();
+
+// Обновление карты с использованием значения переменной city
+updateMap(city);
 
 
 // selector
@@ -1241,10 +1249,6 @@ dropdown.style.display = 'none';
 
 changeCity(jsonData[0].id);
 changeCityByName(userCity);
-
-
-
-
 
 
 
@@ -1452,16 +1456,7 @@ function initializeSlider(slidesClassName, dotsClassName, prevClassName, nextCla
 }
 
 
-
-
-    
-
-
-
-
-
 // modal window
-
 
 let expandedCard
 let initialProperties = []

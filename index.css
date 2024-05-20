@@ -634,7 +634,7 @@ label {
   background-color: #f0f0f0;
   border-radius: 5px;
   box-sizing: border-box;
-  min-width: 200px;
+  min-width: 270px;
 }
 
 .card img {
@@ -644,7 +644,7 @@ label {
 }
 
 .card_body {
-  padding: 1rem !important;
+  /* padding: 1rem !important; */
   color: black;
 }
 
@@ -811,6 +811,7 @@ label {
   gap: 30px;
   display: flex;
   background: rgb(62, 149, 209);
+  overflow: hidden;
 }
 
 .card__images {
@@ -1701,6 +1702,12 @@ label {
 }
 
 
+
+
+
+
+
+
 @media (max-width:1400px){
   .main_builder{
       transform: translate(600px,90px);
@@ -2038,6 +2045,7 @@ display: none;
 @media (max-width:768px){
   .card {
     width: 270px; 
+    height: 240px;
   }
   .widgets {
     position: fixed;
@@ -2332,8 +2340,13 @@ display: none;
 .performance_btn.d-none {
   width: 100%;
 } 
+.card img:nth-of-type(1) {
+  height: 121px;
 }
-
+.card_like img{
+  height: unset!important;
+}
+}
 @media (max-width:625px){
   .container {
       padding: 10px!important;
@@ -2343,7 +2356,6 @@ display: none;
   }
   .builder {
     /* left: 0px; */
-     left: -150px;
   }
   .about {
       margin-bottom: 16rem!important;
@@ -2456,11 +2468,4 @@ display: none;
     /* transform: translateX(-96px); */
     left: -150px;
   }
-}
-
-.leaflet-container {
-  background: #f3f4f6!important; 
-}
-.leaflet-tile {
-  filter: brightness(1.2) contrast(0.85) saturate(0.6)!important;
 }
